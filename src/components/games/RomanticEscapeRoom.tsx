@@ -220,11 +220,12 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
 
       {/* Room Selection */}
       <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        display: mobileView ? 'flex' : 'grid',
+        flexDirection: mobileView ? 'column' : 'row',
+        gridTemplateColumns: mobileView ? 'none' : 'repeat(auto-fit, minmax(250px, 1fr))',
         gap: '15px',
         marginBottom: '25px',
-        padding: '0 10px' // Mobile padding
+        padding: mobileView ? '0 5px' : '0 10px'
       }}>
         {rooms.map((room) => {
           const isUnlocked = unlockedRooms.includes(room.id)
@@ -236,21 +237,21 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
               onClick={() => isUnlocked && handleRoomClick(room.id)}
               whileHover={isUnlocked ? { scale: 1.02 } : {}}
               style={{
-               
                 background: isUnlocked 
                   ? 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,227,236,0.9))'
                   : 'linear-gradient(135deg, #f0f0f0, #e0e0e0)',
                 borderRadius: '20px',
-                padding: mobileView ? '15px' : '20px',
+                padding: mobileView ? '18px 15px' : '20px',
                 border: isUnlocked ? '3px solid #ffccd5' : '3px solid #ccc',
                 cursor: isUnlocked ? 'pointer' : 'not-allowed',
                 position: 'relative',
                 opacity: isUnlocked ? 1 : 0.6,
                 transition: 'all 0.3s ease',
-                minHeight: '140px' // Minimum height for mobile
+                minHeight: mobileView ? '120px' : '140px',
+                width: mobileView ? '100%' : 'auto'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+              <div style={{ display: 'flex', alignItems: mobileView ? 'flex-start' : 'center', gap: '10px', marginBottom: '10px', flexDirection: mobileView ? 'column' : 'row' }}>
                 <span style={{ fontSize: mobileView ? '25px' : '30px' }}>{room.emoji}</span>
                 <div>
                   <h3 style={{ 
@@ -340,17 +341,17 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
               style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,227,236,0.95))',
                 borderRadius: '25px',
-                padding: mobileView ? '25px 20px' : '40px',
+                padding: mobileView ? '20px 15px' : '40px',
                 maxWidth: '500px',
-                width: '95%',
-                maxHeight: '90vh', // Prevent overflow on mobile
-                overflowY: 'auto', // Enable scrolling if needed
+                width: mobileView ? '92%' : '95%',
+                maxHeight: '92vh',
+                overflowY: 'auto',
                 border: '3px solid #ffccd5',
                 boxShadow: '0 20px 60px rgba(255,77,125,0.4)'
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: mobileView ? '15px' : '20px', flexDirection: mobileView ? 'column' : 'row', textAlign: mobileView ? 'center' : 'left' }}>
                 <span style={{ fontSize: '40px' }}>{rooms[currentRoom].emoji}</span>
                 <h2 style={{ 
                   color: '#ff4d7d', 
@@ -365,15 +366,16 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
               <div style={{
                 background: 'linear-gradient(135deg, #fff5f8, #ffe0ec)',
                 borderRadius: '15px',
-                padding: '20px',
-                marginBottom: '25px',
+                padding: mobileView ? '15px' : '20px',
+                marginBottom: mobileView ? '20px' : '25px',
                 border: '2px solid #ffccd5'
               }}>
                 <h3 style={{ 
                   color: '#ff6b9d', 
-                  fontSize: '18px',
-                  marginBottom: '15px',
-                  fontWeight: 600 
+                  fontSize: mobileView ? '16px' : '18px',
+                  marginBottom: mobileView ? '12px' : '15px',
+                  fontWeight: 600,
+                  textAlign: 'center'
                 }}>
                   {rooms[currentRoom].puzzle.question}
                 </h3>
@@ -385,15 +387,15 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
                     style={{
                       background: 'linear-gradient(135deg, #ffe0e0, #ffcccc)',
                       borderRadius: '12px',
-                      padding: '15px',
+                      padding: mobileView ? '12px' : '15px',
                       border: '2px solid #ff9999',
-                      marginBottom: '15px',
+                      marginBottom: mobileView ? '12px' : '15px',
                       textAlign: 'center'
                     }}
                   >
                     <p style={{ 
                       color: '#d32f2f', 
-                      fontSize: '14px',
+                      fontSize: mobileView ? '12px' : '14px',
                       margin: 0,
                       fontWeight: 600
                     }}>
@@ -402,7 +404,7 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
                   </motion.div>
                 )}
                 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: mobileView ? '8px' : '10px' }}>
                   {rooms[currentRoom].puzzle.options.map((option, index) => (
                     <motion.button
                       key={index}
@@ -413,8 +415,8 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
                         background: 'linear-gradient(135deg, #ffffff, #fff5f8)',
                         border: '2px solid #ffccd5',
                         borderRadius: '12px',
-                        padding: '15px 20px',
-                        fontSize: '16px',
+                        padding: mobileView ? '12px 15px' : '15px 20px',
+                        fontSize: mobileView ? '14px' : '16px',
                         cursor: 'pointer',
                         color: '#2d1b3d',
                         fontWeight: 500,
@@ -457,23 +459,6 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
                   {rooms[currentRoom].puzzle.hint}
                 </p>
               </div>
-
-              <button
-                onClick={() => setShowPuzzle(false)}
-                style={{
-                  background: 'transparent',
-                  border: '2px solid #ffccd5',
-                  borderRadius: '20px',
-                  padding: '10px 20px',
-                  fontSize: '14px',
-                  color: '#ff4d7d',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  marginTop: '20px'
-                }}
-              >
-                Close Puzzle
-              </button>
             </motion.div>
           </motion.div>
         )}

@@ -227,32 +227,6 @@ export default function GamePage({
 
   return (
     <div style={{ minHeight: '100vh', background: 'inherit' }}>
-      {/* Back button */}
-      <motion.button
-        onClick={onBack}
-        style={{
-          position: 'fixed',
-          top: '20px',
-          left: '20px',
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,227,236,0.9))',
-          border: '2px solid #ffccd5',
-          borderRadius: '15px',
-          padding: '12px 20px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          cursor: 'pointer',
-          boxShadow: '0 10px 30px rgba(255,77,125,0.2)',
-          backdropFilter: 'blur(10px)',
-          zIndex: 100
-        }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <ArrowLeft size={18} color="#ff4d7d" />
-        <span style={{ color: '#ff4d7d', fontWeight: 600 }}>Back to Games</span>
-      </motion.button>
-
       {/* Game content */}
       <motion.div
         style={{
