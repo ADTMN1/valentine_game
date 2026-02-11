@@ -1,26 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Heart, Gift, Sparkles } from 'lucide-react'
 
 export default function SurpriseIntro({ onNext }: { onNext: () => void }) {
+  const [mobileView, setMobileView] = useState(false)
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setMobileView(window.innerWidth <= 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   return (
     <div style={{
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      position: 'relative'
+      position: 'relative',
+      padding: mobileView ? '20px 15px' : '0' // Mobile padding
     }}>
       <motion.div
         style={{
           background: 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,227,236,0.9))',
           borderRadius: '30px',
-          padding: '60px 40px',
+          padding: mobileView ? '40px 25px' : '60px 40px',
           textAlign: 'center',
           boxShadow: '0 30px 80px rgba(255,77,125,0.2)',
           border: '3px solid #ffccd5',
           backdropFilter: 'blur(20px)',
-          maxWidth: '500px'
+          maxWidth: mobileView ? '350px' : '500px',
+          width: '90%'
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -70,16 +84,18 @@ export default function SurpriseIntro({ onNext }: { onNext: () => void }) {
             background: 'linear-gradient(135deg, #ff4d7d, #ff8fab)',
             color: 'white',
             border: 'none',
-            padding: '18px 40px',
+            padding: mobileView ? '15px 30px' : '18px 40px',
             borderRadius: '50px',
-            fontSize: '18px',
+            fontSize: mobileView ? '16px' : '18px',
             fontWeight: 600,
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             gap: '10px',
             margin: '0 auto',
-            boxShadow: '0 10px 30px rgba(255,77,125,0.3)'
+            boxShadow: '0 10px 30px rgba(255,77,125,0.3)',
+            width: mobileView ? '100%' : 'auto',
+            maxWidth: '250px'
           }}
           whileHover={{ 
             scale: 1.05, 

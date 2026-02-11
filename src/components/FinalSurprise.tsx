@@ -5,7 +5,18 @@ import { Heart, Sparkles, Music } from 'lucide-react'
 export default function FinalSurprise({ to, photoUrl }: { to: string; photoUrl?: string }) {
   const [showHearts, setShowHearts] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [mobileView, setMobileView] = useState(false)
   const audioRef = React.useRef<HTMLAudioElement>(null)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setMobileView(window.innerWidth <= 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     // Start music automatically
@@ -92,18 +103,20 @@ export default function FinalSurprise({ to, photoUrl }: { to: string; photoUrl?:
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
+        padding: mobileView ? '20px 15px' : '0', // Mobile padding
         background: 'radial-gradient(ellipse at center, #fff5f8, #ffe0ec, #ffc2d4)'
       }}>
         <motion.div
           style={{
             background: 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,227,236,0.9))',
             borderRadius: '30px',
-            padding: '40px',
+            padding: mobileView ? '25px 20px' : '40px',
             textAlign: 'center',
             boxShadow: '0 30px 80px rgba(255,77,125,0.3)',
             border: '3px solid #ffccd5',
             backdropFilter: 'blur(20px)',
-            maxWidth: '600px'
+            maxWidth: mobileView ? '350px' : '600px',
+            width: '90%'
           }}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -119,7 +132,7 @@ export default function FinalSurprise({ to, photoUrl }: { to: string; photoUrl?:
           >
             💕
           </motion.div>
-
+<h2>Happy Valentine's Day!</h2>
           <motion.h1
             style={{
               fontSize: '42px',
@@ -132,15 +145,15 @@ export default function FinalSurprise({ to, photoUrl }: { to: string; photoUrl?:
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            For You, {to} 💕
+            You are my everything! 💕
           </motion.h1>
 
           <motion.div
             style={{
-              width: '300px',
-              height: '300px',
+              width: mobileView ? '250px' : '300px',
+              height: mobileView ? '250px' : '300px',
               borderRadius: '20px',
-              margin: '30px auto',
+              margin: mobileView ? '25px auto' : '30px auto',
               background: photoUrl ? `url(${photoUrl})` : 'url(/photo.jpg)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
@@ -199,9 +212,14 @@ export default function FinalSurprise({ to, photoUrl }: { to: string; photoUrl?:
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
           >
-            You've completed all the games! 
+            Every moment with you feels like Valentine's Day! 💝
             <br />
-            This surprise was created just for you with love 💕
+           For You, your 💕
+            <br/>
+            <b>
+  እወድሻለሁ የኔ ብርሀን
+            </b>
+          
           </motion.p>
 
           <motion.div

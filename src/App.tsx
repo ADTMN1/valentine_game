@@ -5,6 +5,7 @@ import SurpriseIntro from './components/SurpriseIntro'
 import PackShell from './components/PackShell'
 import FinalSurprise from './components/FinalSurprise'
 import RomanticParticles from './components/RomanticParticles'
+import RomanticEscapeRoom from './components/games/RomanticEscapeRoom'
 
 type Step = 'intro' | 'games' | 'final'
 
@@ -15,8 +16,8 @@ function useQuery() {
 export default function App() {
   const q = useQuery()
   const packParam = q.get('pack') || 'cute'
-  const to = q.get('to') || 'Luz'
-  const from = q.get('from') || 'Wende'
+  const to = q.get('to') || 'your'
+  const from = q.get('from') || '💕 '
   const photoUrl = q.get('photo') || ''
   const [mounted, setMounted] = useState(false)
   const [currentStep, setCurrentStep] = useState<Step>('intro')
@@ -37,10 +38,10 @@ export default function App() {
   }, [packParam])
 
   const packs: Record<string, string[]> = {
-    cute: ['Quiz'],
-    fun: ['Quiz'],
-    emotional: ['Quiz'],
-    full: ['Quiz'],
+    cute: ['EscapeRoom'],
+    fun: ['EscapeRoom'],
+    emotional: ['EscapeRoom'],
+    full: ['EscapeRoom'],
   }
 
   const totalGames = packs[pack]?.length || 1
@@ -50,7 +51,8 @@ export default function App() {
       const newCompleted = [...completedGames, gameName]
       setCompletedGames(newCompleted)
       
-      if (newCompleted.length === totalGames) {
+      // Since we only have one game (EscapeRoom), go directly to final when it's completed
+      if (gameName === 'EscapeRoom' || newCompleted.length === totalGames) {
         setTimeout(() => {
           setCurrentStep('final')
         }, 1500)
