@@ -107,7 +107,7 @@ export default function SurpriseIntro({ onNext }: { onNext: () => void }) {
           transition={{ duration: 0.5, delay: 0.7 }}
         >
           <Sparkles size={20} />
-          Open Your Surprise
+        badhaasa kiyaaf banii
           <Sparkles size={20} />
         </motion.button>
       </motion.div>

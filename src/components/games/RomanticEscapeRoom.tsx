@@ -33,13 +33,13 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
     {
       id: 0,
       name: "Memory Lane",
-      emoji: "🌸",
+      emoji: "�",
       description: "Recalling the sweet names that started it all...",
       clue: "The language of my heart since day one.",
       puzzle: {
-        question: "What did I call you?",
-        options: ["Enat", "Mare", "Fikir", "Liyu"],
-        correct: 2, // Fikir
+        question: "yeroo jalqabaf kan sii argee esati?",
+        options: ["Dormii", "70 dereja Auditariyama ", " Afran qallo"],
+        correct: 1, 
         hint: "It’s the foundation of every heartbeat we’ve shared. ❤️"
       }
     },
@@ -50,9 +50,9 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
       description: "Exploring the light that draws me to you...",
       clue: "A silent expression that says a thousand words.",
       puzzle: {
-        question: "What do I like most about you?",
-        options: ["hairstyle", "Smile", "Shape", "you"],
-        correct: 1, // Smile
+        question: "ogaan aaruu maal jedhen si waama?",
+        options: ["Eduu", "Merii", "Seetiyoo", "you"],
+        correct: 2, // Smile
         hint: "It’s the first thing that warms me up, even on a cold day. ☀️"
       }
     },
@@ -63,9 +63,9 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
       description: "The side of us that only comes out in heated moments...",
       clue: "When things get serious, the nicknames disappear.",
       puzzle: {
-        question: "What do I call you when I am angry?",
-        options: ["Rich", "Rahel", "Habtam", "Kaliye"],
-        correct: 2, // Habtam
+        question: "gooftaan hin taasisiniti yoo waldhabne?",
+        options: [" jaalalaa biraa nii jalqabda?", "dhiifama nii gafata?"],
+        correct: 1, // Habtam
         hint: "Think of the name I use when I’m not being 'sweet' anymore. 😤"
       }
     }
@@ -252,7 +252,7 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
               }}
             >
               <div style={{ display: 'flex', alignItems: mobileView ? 'flex-start' : 'center', gap: '10px', marginBottom: '10px', flexDirection: mobileView ? 'column' : 'row' }}>
-                <span style={{ fontSize: mobileView ? '25px' : '30px' }}>{room.emoji}</span>
+                <span className="emoji" style={{ fontSize: mobileView ? '25px' : '30px' }}>{room.emoji}</span>
                 <div>
                   <h3 style={{ 
                     color: isUnlocked ? '#ff4d7d' : '#999',
@@ -352,7 +352,7 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
               onClick={(e) => e.stopPropagation()}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: mobileView ? '15px' : '20px', flexDirection: mobileView ? 'column' : 'row', textAlign: mobileView ? 'center' : 'left' }}>
-                <span style={{ fontSize: '40px' }}>{rooms[currentRoom].emoji}</span>
+                <span className="emoji" style={{ fontSize: '40px' }}>{rooms[currentRoom].emoji}</span>
                 <h2 style={{ 
                   color: '#ff4d7d', 
                   fontSize: '24px',

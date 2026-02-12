@@ -1,5 +1,5 @@
 
-*{box-sizing:border-box;margin:0;padding:0;font-family: 'Playfair Display', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+*{box-sizing:border-box;margin:0;padding:0;font-family: 'Playfair Display', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'}
 
 :root{
 	--bg-1:#fff5f8;
@@ -92,3 +92,14 @@ body.romance{background:radial-gradient(ellipse at top, #fff0f6, #ffeef8, #ffe0e
 .floatingHeart:nth-child(16){left:72%;animation-delay:1s}
 .floatingHeart:nth-child(17){left:82%;animation-delay:1.08s}
 .floatingHeart:nth-child(18){left:92%;animation-delay:1.16s}
+
+/* Ensure proper emoji rendering */
+.emoji {
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

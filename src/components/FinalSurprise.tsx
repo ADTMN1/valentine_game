@@ -79,7 +79,7 @@ export default function FinalSurprise({ to, photoUrl }: { to: string; photoUrl?:
               repeatDelay: 2
             }}
           >
-            {heart.symbol}
+            <span className="emoji">{heart.symbol}</span>
           </motion.div>
         ))}
       </div>
@@ -217,7 +217,7 @@ export default function FinalSurprise({ to, photoUrl }: { to: string; photoUrl?:
            For You, your 💕
             <br/>
             <b>
-  እወድሻለሁ የኔ ብርሀን
+  osoo wal bira taane nan gamadaa turee sin jaladha
             </b>
           
           </motion.p>

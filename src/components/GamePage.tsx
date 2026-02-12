@@ -91,7 +91,7 @@ export default function GamePage({
                   repeatDelay: 1
                 }}
               >
-                {['💕', '💖', '💗', '💝', '💘', '💓', '❤️', '🌹'][Math.floor(Math.random() * 8)]}
+                <span className="emoji">{['💕', '💖', '💗', '💝', '💘', '💓', '❤️', '🌹'][Math.floor(Math.random() * 8)]}</span>
               </motion.div>
             ))}
           </div>
@@ -185,7 +185,7 @@ export default function GamePage({
                   ease: "easeInOut"
                 }}
               >
-                💖
+                <span className="emoji">💖</span>
               </motion.div>
             </motion.div>
 
