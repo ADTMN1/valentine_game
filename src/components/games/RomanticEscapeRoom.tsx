@@ -29,17 +29,17 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
- const rooms = [
+const rooms = [
     {
       id: 0,
       name: "Memory Lane",
-      emoji: "�",
+      emoji: "🌸",
       description: "Recalling the sweet names that started it all...",
       clue: "The language of my heart since day one.",
       puzzle: {
-        question: "yeroo jalqabaf kan sii argee esati?",
-        options: ["Dormii", "70 dereja Auditariyama ", " Afran qallo"],
-        correct: 1, 
+        question: "What did I call you?",
+        options: ["Enat", "Mare", "Fikir", "Liyu"],
+        correct: 2, // Fikir
         hint: "It’s the foundation of every heartbeat we’ve shared. ❤️"
       }
     },
@@ -50,9 +50,9 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
       description: "Exploring the light that draws me to you...",
       clue: "A silent expression that says a thousand words.",
       puzzle: {
-        question: "ogaan aaruu maal jedhen si waama?",
-        options: ["Eduu", "Merii", "Seetiyoo", "you"],
-        correct: 2, // Smile
+        question: "What do I like most about you?",
+        options: ["hairstyle", "Smile", "Shape", "you"],
+        correct: 1, // Smile
         hint: "It’s the first thing that warms me up, even on a cold day. ☀️"
       }
     },
@@ -63,9 +63,9 @@ export default function RomanticEscapeRoom({ to, from, onGameComplete }: {
       description: "The side of us that only comes out in heated moments...",
       clue: "When things get serious, the nicknames disappear.",
       puzzle: {
-        question: "gooftaan hin taasisiniti yoo waldhabne?",
-        options: [" jaalalaa biraa nii jalqabda?", "dhiifama nii gafata?"],
-        correct: 1, // Habtam
+        question: "What do I call you when I am angry?",
+        options: ["Rich", "Rahel", "Habtam", "Kaliye"],
+        correct: 2, // Habtam
         hint: "Think of the name I use when I’m not being 'sweet' anymore. 😤"
       }
     }

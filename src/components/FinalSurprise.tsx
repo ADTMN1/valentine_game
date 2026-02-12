@@ -217,7 +217,7 @@ export default function FinalSurprise({ to, photoUrl }: { to: string; photoUrl?:
            For You, your 💕
             <br/>
             <b>
-  osoo wal bira taane nan gamadaa turee sin jaladha
+  እወድሻለሁ የኔ ብርሀን
             </b>
           
           </motion.p>
