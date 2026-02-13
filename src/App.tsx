@@ -26,10 +26,24 @@ export default function App() {
   useEffect(() => {
     setMounted(true)
     document.body.classList.add('romance')
+    
+    // Listen for golden heart win event
+    const handleGoldenHeartWin = (event: any) => {
+      const { gameName } = event.detail
+      if (!completedGames.includes(gameName)) {
+        const newCompleted = [...completedGames, gameName]
+        setCompletedGames(newCompleted)
+        setCurrentStep('final')
+      }
+    }
+    
+    window.addEventListener('goldenHeartWon', handleGoldenHeartWin)
+    
     return () => {
       document.body.classList.remove('romance')
+      window.removeEventListener('goldenHeartWon', handleGoldenHeartWin)
     }
-  }, [])
+  }, [completedGames])
 
   const pack = useMemo(() => {
     const p = packParam.toLowerCase()
@@ -38,10 +52,10 @@ export default function App() {
   }, [packParam])
 
   const packs: Record<string, string[]> = {
-    cute: ['EscapeRoom'],
-    fun: ['EscapeRoom'],
-    emotional: ['EscapeRoom'],
-    full: ['EscapeRoom'],
+    cute: ['SpinTheWheel'],
+    fun: ['SpinTheWheel'],
+    emotional: ['SpinTheWheel'],
+    full: ['SpinTheWheel'],
   }
 
   const totalGames = packs[pack]?.length || 1
@@ -51,8 +65,8 @@ export default function App() {
       const newCompleted = [...completedGames, gameName]
       setCompletedGames(newCompleted)
       
-      // Since we only have one game (EscapeRoom), go directly to final when it's completed
-      if (gameName === 'EscapeRoom' || newCompleted.length === totalGames) {
+      // Go to final when all games in the pack are completed
+      if (newCompleted.length === totalGames) {
         setTimeout(() => {
           setCurrentStep('final')
         }, 1500)

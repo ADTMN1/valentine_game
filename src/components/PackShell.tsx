@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, Star, Gamepad2, X, Sparkles, Key } from 'lucide-react'
+import { Heart, Star, Gamepad2, X, Sparkles, Key, Gift } from 'lucide-react'
 import GameProgress from './GameProgress'
 import GamePage from './GamePage'
 import CuteQuiz from './games/CuteQuiz'
@@ -11,6 +11,7 @@ import EmojiMatch from './games/EmojiMatch'
 import MiniTrivia from './games/MiniTrivia'
 import MessageHunt from './games/MessageHunt'
 import RomanticEscapeRoom from './games/RomanticEscapeRoom'
+import SpinTheWheel from './games/SpinTheWheel'
 
 const gameIcons: Record<string, React.ReactNode> = {
   'Quiz': <Star size={24} />,
@@ -20,7 +21,8 @@ const gameIcons: Record<string, React.ReactNode> = {
   'Emoji Match': <Sparkles size={24} />,
   'Mini Trivia': <Star size={24} />,
   'Message Hunt': <Heart size={24} />,
-  'EscapeRoom': <Key size={24} />
+  'EscapeRoom': <Key size={24} />,
+  'SpinTheWheel': <Gift size={24} />
 }
 
 const gameDescriptions: Record<string, string> = {
@@ -31,7 +33,8 @@ const gameDescriptions: Record<string, string> = {
   'Emoji Match': 'Match fun emojis',
   'Mini Trivia': 'Quick fun questions',
   'Message Hunt': 'Find hidden messages',
-  'EscapeRoom': 'Solve romantic puzzles to escape'
+  'EscapeRoom': 'Solve romantic puzzles to escape',
+  'SpinTheWheel': 'Spin to win romantic surprises'
 }
 
 export default function PackShell({ 
@@ -52,10 +55,10 @@ export default function PackShell({
   photoUrl?: string;
 }) {
   const packs: Record<string, string[]> = {
-    cute: ['EscapeRoom'],
-    fun: ['EscapeRoom'],
-    emotional: ['EscapeRoom'],
-    full: ['EscapeRoom'],
+    cute: ['SpinTheWheel'],
+    fun: ['SpinTheWheel'],
+    emotional: ['SpinTheWheel'],
+    full: ['SpinTheWheel'],
   }
 
   const games = packs[pack] || packs.cute
@@ -91,6 +94,8 @@ export default function PackShell({
         return <MessageHunt {...props} />
       case 'EscapeRoom':
         return <RomanticEscapeRoom {...props} onGameComplete={() => handleGameComplete(name)} />
+      case 'SpinTheWheel':
+        return <SpinTheWheel {...props} onGameComplete={() => handleGameComplete(name)} />
       default:
         return <div>Coming soon</div>
     }
@@ -100,8 +105,8 @@ export default function PackShell({
     if (onGameComplete) {
       onGameComplete(gameName)
     }
-    // Only go back to game selection if it's not the EscapeRoom (which should go to final)
-    if (gameName !== 'EscapeRoom') {
+    // Only go back to game selection if it's not EscapeRoom or SpinTheWheel (which should go to final)
+    if (gameName !== 'EscapeRoom' && gameName !== 'SpinTheWheel') {
       setActive(null) // Go back to game selection
     }
   }
